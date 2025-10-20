@@ -4,17 +4,17 @@ properties([
     ])
 ])
 
-node {  
+node {
     stage('Preparation') {
         catchError(buildResult: 'SUCCESS') {
-            sh 'docker stop samplerunning'
-            sh 'docker rm samplerunning'
+            sh 'docker stop samplerunning || true'
+            sh 'docker rm samplerunning || true'
         }
     }
     stage('Build') {
-        build job: 'BuildSampleApp'
+        build job: 'BuildSampleApp', propagate: true, wait: true
     }
     stage('Results') {
-        build job: 'TestSampleApp'
+        build job: 'TestSampleApp', propagate: true, wait: true
     }
 }
