@@ -12,9 +12,9 @@ node {
         }
     }
     stage('Build') {
-        build 'BuildSampleApp'
+        build job: 'BuildSampleApp', propagate: true, wait: true, parameters: [], quietPeriod: 0
     }
     stage('Results') {
-        build 'TestSampleApp'
+        build job: 'TestSampleApp', propagate: true, wait: true, parameters: [], quietPeriod: 0
     }
 }
