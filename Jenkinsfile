@@ -1,9 +1,4 @@
-node {
-    // Automatically trigger this pipeline on each push to GitHub
-    triggers {
-        githubPush()
-    }
-    
+node {  
     stage('Preparation') {
         catchError(buildResult: 'SUCCESS') {
             sh 'docker stop samplerunning'
