@@ -1,10 +1,8 @@
 node {
     // Automatically trigger this pipeline on each push to GitHub
-    properties([
-        pipelineTriggers([
-            githubPush()
-        ])
-    ])
+    triggers {
+        githubPush()
+    }
     
     stage('Preparation') {
         catchError(buildResult: 'SUCCESS') {
